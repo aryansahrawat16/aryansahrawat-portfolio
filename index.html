@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aryan Sahrawat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f7f4;
+      --fg: #1a1a1a;
+      --muted: #888;
+      --accent: #2a2a2a;
+      --link: #1a1a1a;
+      --hover: #555;
+      --border: #e0ddd8;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--border);
+      transition: color 0.15s, text-decoration-color 0.15s;
+    }
+    a:hover {
+      color: var(--hover);
+      text-decoration-color: var(--hover);
+    }
+
+    /* ── Layout ── */
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .nav-name {
+      font-size: 1.125rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      color: var(--fg);
+    }
+    .nav-name:hover { color: var(--hover); text-decoration: none; }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+    }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a.active { color: var(--fg); }
+
+    /* ── Sections ── */
+    section { margin-bottom: 3rem; }
+    section + section { border-top: 1px solid var(--border); padding-top: 2.5rem; }
+
+    h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── About ── */
+    .about-intro {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .about-intro strong { font-weight: 500; }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      background: #ede9e3;
+      color: var(--accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    .bullet-list { list-style: none; }
+    .bullet-list li {
+      padding: 0.2rem 0;
+      display: flex;
+      gap: 0.6rem;
+    }
+    .bullet-list li::before {
+      content: "↳";
+      color: var(--muted);
+      flex-shrink: 0;
+      font-style: normal;
+    }
+
+    /* ── Projects ── */
+    .project-list { list-style: none; }
+    .project-item {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-item:first-child { border-top: 1px solid var(--border); }
+    .project-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.25rem;
+      flex-wrap: wrap;
+    }
+    .project-name {
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+    .project-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .project-desc {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+    .project-links {
+      margin-top: 0.4rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .project-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      text-decoration: none;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .project-links a:hover { color: var(--fg); }
+
+    /* ── Writing ── */
+    .writing-list { list-style: none; }
+    .writing-item {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .writing-item:first-child { border-top: 1px solid var(--border); }
+    .writing-title {
+      font-size: 1.05rem;
+    }
+    .writing-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ── Contact ── */
+    .contact-text {
+      margin-bottom: 1.25rem;
+      color: #444;
+    }
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+    .social-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: var(--muted);
+    }
+    .social-links a:hover { color: var(--fg); }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--fg); }
+
+    /* ── Fade-in animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .page > * {
+      animation: fadeUp 0.5s ease both;
+    }
+    nav { animation-delay: 0s; }
+    section:nth-of-type(1) { animation-delay: 0.08s; }
+    section:nth-of-type(2) { animation-delay: 0.14s; }
+    section:nth-of-type(3) { animation-delay: 0.20s; }
+    section:nth-of-type(4) { animation-delay: 0.26s; }
+    footer { animation-delay: 0.32s; }
+
+    @media (max-width: 480px) {
+      .page { padding: 2.5rem 1.25rem 4rem; }
+      nav { margin-bottom: 2.5rem; }
+      .about-intro { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Nav -->
+    <nav>
+      <a href="#" class="nav-name">aryan sahrawat</a>
+      <ul class="nav-links">
+        <li><a href="#about" class="active">about</a></li>
+        <li><a href="#projects">projects</a></li>
+        <li><a href="#writing">writing</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- About -->
+    <section id="about">
+      <h2>about</h2>
+      <p class="about-intro">
+        Hi, I'm <strong>Aryan</strong> — a Software Engineering &amp; Management student at
+        <a href="https://www.mcmaster.ca" target="_blank">McMaster University</a>,
+        building things at the intersection of software, systems, and people.
+      </p>
+
+      <div class="tag-row">
+        <span class="tag">Software Eng</span>
+        <span class="tag">McMaster</span>
+        <span class="tag">Hamilton, ON</span>
+      </div>
+
+      <ul class="bullet-list">
+        <li>studying Software Engineering &amp; Management at <a href="https://www.mcmaster.ca" target="_blank">McMaster</a></li>
+        <li>interested in full-stack development, systems design, and product thinking</li>
+        <li>always working on a side project — currently exploring <a href="#projects">see below</a></li>
+        <li>open to internships and new grad opportunities in 2025–26</li>
+      </ul>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>projects</h2>
+      <ul class="project-list">
+
+        <li class="project-item">
+          <div class="project-header">
+            <span class="project-name">Project One</span>
+            <span class="project-year">2025</span>
+          </div>
+          <p class="project-desc">A short description of what you built, the problem it solves, and any notable outcomes — users, stars, press, etc.</p>
+          <div class="project-links">
+            <a href="#" target="_blank">github →</a>
+            <a href="#" target="_blank">live →</a>
+          </div>
+        </li>
+
+        <li class="project-item">
+          <div class="project-header">
+            <span class="project-name">Project Two</span>
+            <span class="project-year">2024</span>
+          </div>
+          <p class="project-desc">Another project description. What stack did you use? What did you learn? What impact did it have?</p>
+          <div class="project-links">
+            <a href="#" target="_blank">github →</a>
+            <a href="#" target="_blank">live →</a>
+          </div>
+        </li>
+
+        <li class="project-item">
+          <div class="project-header">
+            <span class="project-name">Project Three</span>
+            <span class="project-year">2024</span>
+          </div>
+          <p class="project-desc">A third project — could be a hackathon win, open-source contribution, or something built for a course or internship.</p>
+          <div class="project-links">
+            <a href="#" target="_blank">github →</a>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- Writing -->
+    <section id="writing">
+      <h2>writing</h2>
+      <ul class="writing-list">
+
+        <li class="writing-item">
+          <a href="#" class="writing-title">What I learned shipping my first side project</a>
+          <span class="writing-date">Mar 2025</span>
+        </li>
+
+        <li class="writing-item">
+          <a href="#" class="writing-title">Notes on system design for students</a>
+          <span class="writing-date">Jan 2025</span>
+        </li>
+
+        <li class="writing-item">
+          <a href="#" class="writing-title">Why I chose Software Engineering &amp; Management</a>
+          <span class="writing-date">Sep 2024</span>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>contact</h2>
+      <p class="contact-text">
+        I'm always happy to chat about projects, internships, or ideas.
+        The best way to reach me is by email.
+      </p>
+      <ul class="social-links">
+        <li><a href="mailto:your@email.com">email</a></li>
+        <li><a href="https://github.com/yourusername" target="_blank">github</a></li>
+        <li><a href="https://linkedin.com/in/yourusername" target="_blank">linkedin</a></li>
+        <li><a href="https://x.com/yourusername" target="_blank">x</a></li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <span>2026 © Aryan Sahrawat</span>
+      <a href="mailto:your@email.com">your@email.com</a>
+    </footer>
+
+  </div>
+</body>
+</html>
