@@ -14,15 +14,16 @@
       --fg: #1a1a1a;
       --muted: #888;
       --accent: #2a2a2a;
-      --link: #1a1a1a;
-      --hover: #555;
       --border: #e0ddd8;
+      --hover: #555;
     }
 
     html { font-size: 16px; }
 
     body {
-      background: var(--bg);
+      background-color: var(--bg);
+      background-image: radial-gradient(circle, #c8c4be 1px, transparent 1px);
+      background-size: 24px 24px;
       color: var(--fg);
       font-family: 'EB Garamond', Georgia, serif;
       font-size: 1.125rem;
@@ -30,19 +31,9 @@
       min-height: 100vh;
     }
 
-    a {
-      color: var(--link);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-color: var(--border);
-      transition: color 0.15s, text-decoration-color 0.15s;
-    }
-    a:hover {
-      color: var(--hover);
-      text-decoration-color: var(--hover);
-    }
+    a { color: var(--fg); text-underline-offset: 3px; text-decoration-color: var(--border); transition: color 0.15s; }
+    a:hover { color: var(--hover); }
 
-    /* ── Layout ── */
     .page {
       max-width: 640px;
       margin: 0 auto;
@@ -58,330 +49,443 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
-    .nav-name {
-      font-size: 1.125rem;
-      font-weight: 500;
-      text-decoration: none;
-      letter-spacing: 0.01em;
-      color: var(--fg);
-    }
-    .nav-name:hover { color: var(--hover); text-decoration: none; }
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      letter-spacing: 0.02em;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-    }
-    .nav-links a:hover { color: var(--fg); }
-    .nav-links a.active { color: var(--fg); }
+    .nav-name { font-size: 1.125rem; font-weight: 500; text-decoration: none; cursor: pointer; color: var(--fg); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.02em; }
+    .nav-links a { text-decoration: none; color: var(--muted); cursor: pointer; }
+    .nav-links a:hover, .nav-links a.active { color: var(--fg); }
 
     /* ── Sections ── */
-    section { margin-bottom: 3rem; }
-    section + section { border-top: 1px solid var(--border); padding-top: 2.5rem; }
-
-    h2 {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
+    .section { margin-bottom: 3rem; }
+    .section-border { border-top: 1px solid var(--border); padding-top: 2.5rem; margin-bottom: 3rem; }
+    h2 { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
 
     /* ── About ── */
-    .about-intro {
-      font-size: 1.25rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-    .about-intro strong { font-weight: 500; }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.25rem;
-    }
-    .tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      background: #ede9e3;
-      color: var(--accent);
-      padding: 0.2rem 0.6rem;
-      border-radius: 2px;
-      letter-spacing: 0.04em;
-    }
-
+    .intro { font-size: 1.25rem; line-height: 1.6; margin-bottom: 1.5rem; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; background: #ede9e3; color: var(--accent); padding: 0.2rem 0.6rem; border-radius: 2px; letter-spacing: 0.04em; }
     .bullet-list { list-style: none; }
-    .bullet-list li {
-      padding: 0.2rem 0;
-      display: flex;
-      gap: 0.6rem;
-    }
-    .bullet-list li::before {
-      content: "↳";
-      color: var(--muted);
-      flex-shrink: 0;
-      font-style: normal;
-    }
+    .bullet-list li { display: flex; gap: 0.6rem; padding: 0.2rem 0; }
+    .bullet-list li::before { content: "↳"; color: var(--muted); flex-shrink: 0; }
+
+    /* ── Skills ── */
+    .skill-row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: baseline; margin-bottom: 0.5rem; }
+    .skill-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); min-width: 90px; flex-shrink: 0; }
+    .skill-value { font-size: 1rem; color: #444; }
 
     /* ── Projects ── */
-    .project-list { list-style: none; }
-    .project-item {
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--border);
-    }
+    .project-item { padding: 0.9rem 0; border-bottom: 1px solid var(--border); }
     .project-item:first-child { border-top: 1px solid var(--border); }
-    .project-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 0.25rem;
-      flex-wrap: wrap;
-    }
-    .project-name {
-      font-weight: 500;
-      font-size: 1.05rem;
-    }
-    .project-year {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-    .project-desc {
-      color: #555;
-      font-size: 1rem;
-      line-height: 1.55;
-    }
-    .project-links {
-      margin-top: 0.4rem;
-      display: flex;
-      gap: 1rem;
-    }
-    .project-links a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      text-decoration: none;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-    }
-    .project-links a:hover { color: var(--fg); }
+    .project-header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.25rem; flex-wrap: wrap; }
+    .project-name { font-weight: 500; font-size: 1.05rem; }
+    .project-stack { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); }
+    .project-desc { color: #555; font-size: 1rem; line-height: 1.55; }
+    .project-link { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); text-decoration: none; margin-top: 0.4rem; display: inline-block; }
+    .project-link:hover { color: var(--fg); }
 
     /* ── Writing ── */
-    .writing-list { list-style: none; }
-    .writing-item {
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+    .writing-item { padding: 0.9rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
     .writing-item:first-child { border-top: 1px solid var(--border); }
-    .writing-title {
-      font-size: 1.05rem;
-    }
-    .writing-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      white-space: nowrap;
-    }
+    .writing-title { font-size: 1.05rem; cursor: pointer; text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+    .writing-title:hover { color: var(--hover); }
+    .writing-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
+
+    /* ── Post view ── */
+    .post-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .post-title { font-size: 1.8rem; font-weight: 500; line-height: 1.3; margin-bottom: 2rem; }
+    .post-body { font-size: 1.1rem; line-height: 1.8; color: #333; }
+    .post-body p { margin-bottom: 1.2rem; }
+    .back-link { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--muted); cursor: pointer; text-decoration: none; }
+    .back-link:hover { color: var(--fg); }
 
     /* ── Contact ── */
-    .contact-text {
-      margin-bottom: 1.25rem;
-      color: #444;
-    }
-    .social-links {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      list-style: none;
-    }
-    .social-links a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      color: var(--muted);
-    }
+    .social-links { display: flex; gap: 1.5rem; flex-wrap: wrap; list-style: none; }
+    .social-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--muted); text-decoration: none; }
     .social-links a:hover { color: var(--fg); }
 
     /* ── Footer ── */
-    footer {
-      margin-top: 4rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-    }
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); }
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--fg); }
 
-    /* ── Fade-in animation ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .page > * {
-      animation: fadeUp 0.5s ease both;
-    }
-    nav { animation-delay: 0s; }
-    section:nth-of-type(1) { animation-delay: 0.08s; }
-    section:nth-of-type(2) { animation-delay: 0.14s; }
-    section:nth-of-type(3) { animation-delay: 0.20s; }
-    section:nth-of-type(4) { animation-delay: 0.26s; }
-    footer { animation-delay: 0.32s; }
+    /* ── Admin ── */
+    .admin-grid { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start; }
+    .admin-post-item { padding: 0.75rem 0; border-bottom: 1px solid var(--border); cursor: pointer; transition: padding-left 0.1s; }
+    .admin-post-item:hover { padding-left: 0.4rem; }
+    .admin-post-item.active { padding-left: 0.5rem; background: #ede9e3; }
+    .admin-post-title { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.1rem; }
+    .admin-post-date { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #aaa; }
+    .form-input { width: 100%; font-family: 'EB Garamond', Georgia, serif; font-size: 1.1rem; border: none; border-bottom: 1px solid var(--border); background: transparent; padding: 0.4rem 0; color: var(--fg); outline: none; margin-bottom: 1.25rem; }
+    .form-textarea { width: 100%; font-family: 'EB Garamond', Georgia, serif; font-size: 1rem; border: 1px solid var(--border); background: #fff; padding: 0.75rem; color: var(--fg); outline: none; min-height: 280px; resize: vertical; line-height: 1.7; border-radius: 2px; }
+    .btn { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.04em; padding: 0.4rem 0.9rem; border-radius: 2px; cursor: pointer; }
+    .btn-primary { background: var(--fg); color: var(--bg); border: 1px solid var(--fg); }
+    .btn-primary:hover { background: #333; }
+    .btn-secondary { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .btn-secondary:hover { color: var(--fg); border-color: var(--fg); }
+    .btn-row { display: flex; gap: 0.75rem; margin-top: 1rem; }
+    .editor-hint { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: #aaa; margin-bottom: 0.75rem; }
+    .preview-toggle { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+    .preview-box { border: 1px solid var(--border); padding: 0.75rem; min-height: 280px; border-radius: 2px; font-size: 1.1rem; line-height: 1.8; color: #333; }
+    .preview-box p { margin-bottom: 1.2rem; }
+    .login-error { color: #c0392b; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; margin-bottom: 0.75rem; }
+    .login-box { max-width: 300px; }
+    .login-box input { width: 100%; font-family: 'EB Garamond', Georgia, serif; font-size: 1.1rem; border: none; border-bottom: 1px solid var(--border); background: transparent; padding: 0.4rem 0; color: var(--fg); outline: none; margin-bottom: 1rem; }
+    .mono-muted { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); }
 
-    @media (max-width: 480px) {
-      .page { padding: 2.5rem 1.25rem 4rem; }
-      nav { margin-bottom: 2.5rem; }
-      .about-intro { font-size: 1.1rem; }
+    /* ── Pages ── */
+    .page-view { display: none; }
+    .page-view.active { display: block; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .page > * { animation: fadeUp 0.4s ease both; }
+
+    @media (max-width: 560px) {
+      .admin-grid { grid-template-columns: 1fr; }
+      .project-stack { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
+<div class="page">
 
-    <!-- Nav -->
-    <nav>
-      <a href="#" class="nav-name">aryan sahrawat</a>
-      <ul class="nav-links">
-        <li><a href="#about" class="active">about</a></li>
-        <li><a href="#projects">projects</a></li>
-        <li><a href="#writing">writing</a></li>
-        <li><a href="#contact">contact</a></li>
-      </ul>
-    </nav>
+  <!-- Nav (shared) -->
+  <nav id="main-nav">
+    <span class="nav-name" onclick="showPage('home')">aryan sahrawat</span>
+    <ul class="nav-links">
+      <li><a id="nav-home" onclick="showPage('home')">about</a></li>
+      <li><a id="nav-writing" onclick="showPage('writing')">writing</a></li>
+      <li><a id="nav-admin" onclick="showPage('admin-login')" title="admin">✦</a></li>
+    </ul>
+  </nav>
 
-    <!-- About -->
-    <section id="about">
-      <h2>about</h2>
-      <p class="about-intro">
-        Hi, I'm <strong>Aryan</strong> — a Software Engineering &amp; Management student at
-        <a href="https://www.mcmaster.ca" target="_blank">McMaster University</a>,
-        building things at the intersection of software, systems, and people.
-      </p>
+  <!-- ══ HOME ══ -->
+  <div id="page-home" class="page-view active">
 
+    <div class="section">
+      <p class="intro">Hi, I'm <strong>Aryan</strong> — a Software Engineering &amp; Management student at <a href="https://www.mcmaster.ca" target="_blank">McMaster University</a>, building full-stack systems and exploring where engineering meets product thinking.</p>
       <div class="tag-row">
-        <span class="tag">Software Eng</span>
-        <span class="tag">McMaster</span>
+        <span class="tag">Software Eng &amp; Mgmt</span>
+        <span class="tag">McMaster '29</span>
         <span class="tag">Hamilton, ON</span>
       </div>
-
       <ul class="bullet-list">
-        <li>studying Software Engineering &amp; Management at <a href="https://www.mcmaster.ca" target="_blank">McMaster</a></li>
-        <li>interested in full-stack development, systems design, and product thinking</li>
-        <li>always working on a side project — currently exploring <a href="#projects">see below</a></li>
-        <li>open to internships and new grad opportunities in 2025–26</li>
+        <li><span>studying Software Engineering &amp; Management at <a href="https://www.mcmaster.ca" target="_blank">McMaster</a></span></li>
+        <li><span>building production-style web apps and APIs with Java, Python, and React</span></li>
+        <li><span>full-stack experience — auth, databases, CI/CD, Docker</span></li>
+        <li><span>previously Swim Instructor &amp; Lifeguard at the <a href="https://www.aurora.ca" target="_blank">Town of Aurora</a></span></li>
+        <li><span>Senior Omega Award winner — top performer overall</span></li>
+        <li><span>open to internship and co-op opportunities</span></li>
       </ul>
-    </section>
+    </div>
 
-    <!-- Projects -->
-    <section id="projects">
+    <div class="section-border">
+      <h2>skills</h2>
+      <div class="skill-row"><span class="skill-label">languages</span><span class="skill-value">Python, Java, JavaScript (ES6+), TypeScript, C, C++</span></div>
+      <div class="skill-row"><span class="skill-label">web &amp; api</span><span class="skill-value">React, FastAPI, Flask, RESTful API design</span></div>
+      <div class="skill-row"><span class="skill-label">databases</span><span class="skill-value">PostgreSQL, MySQL, SQLite, SQLAlchemy ORM</span></div>
+      <div class="skill-row"><span class="skill-label">devops</span><span class="skill-value">Docker, Docker Compose, GitHub Actions, pytest</span></div>
+      <div class="skill-row"><span class="skill-label">hardware</span><span class="skill-value">Arduino, ESP32, Bluetooth Low Energy (BLE)</span></div>
+    </div>
+
+    <div class="section-border">
       <h2>projects</h2>
-      <ul class="project-list">
+      <div>
+        <div class="project-item">
+          <div class="project-header"><span class="project-name">Full-Stack Expense Management Platform</span><span class="project-stack">React · FastAPI · PostgreSQL</span></div>
+          <p class="project-desc">RESTful APIs with validation, pagination, and structured logging. Responsive React frontend with optimistic UI updates. Automated testing via pytest and GitHub Actions CI, containerized with Docker Compose.</p>
+        </div>
+        <div class="project-item">
+          <div class="project-header"><span class="project-name">Simple Strings — iOS Guitar Tuner</span><span class="project-stack">Swift · Xcode · ESP32 · BLE</span></div>
+          <p class="project-desc">Native iOS app communicating with an ESP32 over Bluetooth Low Energy. Signal smoothing, haptic feedback, and VoiceOver accessibility. Calibration and chord-mapping for beginner guitarists.</p>
+        </div>
+        <div class="project-item">
+          <div class="project-header"><span class="project-name">2D Car Racing Game</span><span class="project-stack">Python · Pygame</span></div>
+          <p class="project-desc">Local multiplayer racing game (up to 4 players) with physics-based movement and collision detection. Custom level editor with a modularized game loop.</p>
+          <a href="https://github.com/aryansahrawat16/Zoomers-.git" target="_blank" class="project-link">github →</a>
+        </div>
+        <div class="project-item">
+          <div class="project-header"><span class="project-name">Autonomous Arduino Car</span><span class="project-stack">ESP32 · Sensors · Joystick</span></div>
+          <p class="project-desc">Motor drivers and sensors for both autonomous and manual control. Modularized I/O handling, safety checks, and route programming with documented calibration.</p>
+        </div>
+      </div>
+    </div>
 
-        <li class="project-item">
-          <div class="project-header">
-            <span class="project-name">Project One</span>
-            <span class="project-year">2025</span>
-          </div>
-          <p class="project-desc">A short description of what you built, the problem it solves, and any notable outcomes — users, stars, press, etc.</p>
-          <div class="project-links">
-            <a href="#" target="_blank">github →</a>
-            <a href="#" target="_blank">live →</a>
-          </div>
-        </li>
-
-        <li class="project-item">
-          <div class="project-header">
-            <span class="project-name">Project Two</span>
-            <span class="project-year">2024</span>
-          </div>
-          <p class="project-desc">Another project description. What stack did you use? What did you learn? What impact did it have?</p>
-          <div class="project-links">
-            <a href="#" target="_blank">github →</a>
-            <a href="#" target="_blank">live →</a>
-          </div>
-        </li>
-
-        <li class="project-item">
-          <div class="project-header">
-            <span class="project-name">Project Three</span>
-            <span class="project-year">2024</span>
-          </div>
-          <p class="project-desc">A third project — could be a hackathon win, open-source contribution, or something built for a course or internship.</p>
-          <div class="project-links">
-            <a href="#" target="_blank">github →</a>
-          </div>
-        </li>
-
-      </ul>
-    </section>
-
-    <!-- Writing -->
-    <section id="writing">
+    <div class="section-border">
       <h2>writing</h2>
-      <ul class="writing-list">
+      <div id="home-writing-list"></div>
+    </div>
 
-        <li class="writing-item">
-          <a href="#" class="writing-title">What I learned shipping my first side project</a>
-          <span class="writing-date">Mar 2025</span>
-        </li>
-
-        <li class="writing-item">
-          <a href="#" class="writing-title">Notes on system design for students</a>
-          <span class="writing-date">Jan 2025</span>
-        </li>
-
-        <li class="writing-item">
-          <a href="#" class="writing-title">Why I chose Software Engineering &amp; Management</a>
-          <span class="writing-date">Sep 2024</span>
-        </li>
-
-      </ul>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
+    <div class="section-border">
       <h2>contact</h2>
-      <p class="contact-text">
-        I'm always happy to chat about projects, internships, or ideas.
-        The best way to reach me is by email.
-      </p>
+      <p style="margin-bottom:1.25rem;color:#444;">Always happy to chat about projects, internships, or new ideas. Best reached by email.</p>
       <ul class="social-links">
-        <li><a href="mailto:your@email.com">email</a></li>
-        <li><a href="https://github.com/yourusername" target="_blank">github</a></li>
-        <li><a href="https://linkedin.com/in/yourusername" target="_blank">linkedin</a></li>
-        <li><a href="https://x.com/yourusername" target="_blank">x</a></li>
+        <li><a href="mailto:aryan.sahrawat16@gmail.com">email</a></li>
+        <li><a href="https://linkedin.com/in/aryan-sahrawat" target="_blank">linkedin</a></li>
+        <li><a href="https://github.com/aryansahrawat16" target="_blank">github</a></li>
+        <li><a href="#" target="_blank">x</a></li>
       </ul>
-    </section>
+    </div>
 
-    <!-- Footer -->
     <footer>
       <span>2026 © Aryan Sahrawat</span>
-      <a href="mailto:your@email.com">your@email.com</a>
+      <a href="mailto:aryan.sahrawat16@gmail.com">aryan.sahrawat16@gmail.com</a>
     </footer>
-
   </div>
+
+  <!-- ══ WRITING ══ -->
+  <div id="page-writing" class="page-view">
+    <div class="section">
+      <h2>writing</h2>
+      <div id="writing-list"></div>
+    </div>
+    <footer><span>2026 © Aryan Sahrawat</span></footer>
+  </div>
+
+  <!-- ══ POST ══ -->
+  <div id="page-post" class="page-view">
+    <div class="section">
+      <p class="post-date" id="post-date"></p>
+      <h1 class="post-title" id="post-title"></h1>
+      <div class="post-body" id="post-body"></div>
+    </div>
+    <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);">
+      <span class="back-link" onclick="showPage('writing')">← all posts</span>
+    </div>
+    <footer><span>2026 © Aryan Sahrawat</span></footer>
+  </div>
+
+  <!-- ══ ADMIN LOGIN ══ -->
+  <div id="page-admin-login" class="page-view">
+    <div class="login-box">
+      <h2>admin login</h2>
+      <input type="password" id="login-input" placeholder="password" onkeydown="if(event.key==='Enter') doLogin()" />
+      <p class="login-error" id="login-error" style="display:none;">incorrect password.</p>
+      <button class="btn btn-primary" onclick="doLogin()">sign in</button>
+    </div>
+  </div>
+
+  <!-- ══ ADMIN DASHBOARD ══ -->
+  <div id="page-admin" class="page-view">
+    <div class="admin-grid">
+      <div>
+        <h2>posts</h2>
+        <button class="btn btn-primary" onclick="newPost()" style="margin-bottom:1rem;">+ new post</button>
+        <div id="admin-post-list"></div>
+        <div style="margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);">
+          <span class="mono-muted" style="cursor:pointer;" onclick="doLogout()">sign out</span>
+        </div>
+      </div>
+      <div>
+        <h2 id="editor-heading">new post</h2>
+        <input class="form-input" id="editor-title" placeholder="title" style="font-size:1.3rem;font-weight:500;" />
+        <div class="preview-toggle">
+          <span class="editor-hint">**bold** · *italic* · [link](url) · blank line = new paragraph</span>
+          <button class="btn btn-secondary" id="preview-btn" onclick="togglePreview()">preview</button>
+        </div>
+        <textarea class="form-textarea" id="editor-body" placeholder="write your post here…" oninput="livePreview()"></textarea>
+        <div class="preview-box" id="preview-box" style="display:none;"></div>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="save-btn" onclick="savePost()">publish</button>
+          <button class="btn btn-secondary" id="delete-btn" onclick="deletePost()" style="display:none;">delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const PASS = "NelsonSilver196$";
+  const STORE = "aryan_blog_posts";
+  let currentEditId = null;
+  let isAdmin = false;
+  let previewing = false;
+
+  // ── Storage ──
+  function getPosts() {
+    try { return JSON.parse(localStorage.getItem(STORE)) || []; }
+    catch { return []; }
+  }
+  function setPosts(posts) {
+    localStorage.setItem(STORE, JSON.stringify(posts));
+  }
+
+  // ── Markdown ──
+  function md(text) {
+    if (!text) return "";
+    return text.split(/\n\n+/).map(para => {
+      let h = para
+        .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+        .replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")
+        .replace(/\*(.+?)\*/g,"<em>$1</em>")
+        .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>')
+        .replace(/\n/g,"<br/>");
+      return `<p>${h}</p>`;
+    }).join("");
+  }
+
+  // ── Pages ──
+  function showPage(id) {
+    document.querySelectorAll(".page-view").forEach(el => el.classList.remove("active"));
+    document.getElementById("page-" + id).classList.add("active");
+    document.querySelectorAll(".nav-links a").forEach(a => a.classList.remove("active"));
+    const map = { home: "nav-home", writing: "nav-writing", post: "nav-writing", admin: "nav-admin", "admin-login": "nav-admin" };
+    if (map[id]) document.getElementById(map[id]).classList.add("active");
+    if (id === "home" || id === "writing") renderWritingLists();
+    if (id === "admin") renderAdminList();
+    if (id === "admin-login") {
+      document.getElementById("login-input").value = "";
+      document.getElementById("login-error").style.display = "none";
+      setTimeout(() => document.getElementById("login-input").focus(), 50);
+    }
+    window.scrollTo(0, 0);
+  }
+
+  // ── Writing lists ──
+  function renderWritingLists() {
+    const posts = getPosts();
+    const empty = `<p style="color:var(--muted);font-style:italic;">No posts yet.</p>`;
+
+    // Home preview (max 3)
+    const homeEl = document.getElementById("home-writing-list");
+    if (posts.length === 0) {
+      homeEl.innerHTML = `<p style="color:var(--muted);font-style:italic;">Writing coming soon.</p>`;
+    } else {
+      let html = "";
+      posts.slice(0, 3).forEach(p => {
+        html += `<div class="writing-item"><span class="writing-title" onclick="openPost('${p.id}')">${escHtml(p.title)}</span><span class="writing-date">${p.date}</span></div>`;
+      });
+      if (posts.length > 3) html += `<div style="padding-top:0.75rem;"><span class="mono-muted" style="cursor:pointer;" onclick="showPage('writing')">see all →</span></div>`;
+      homeEl.innerHTML = html;
+    }
+
+    // Full writing page
+    const listEl = document.getElementById("writing-list");
+    if (posts.length === 0) {
+      listEl.innerHTML = empty;
+    } else {
+      let html = "";
+      posts.forEach(p => {
+        html += `<div class="writing-item"><span class="writing-title" onclick="openPost('${p.id}')">${escHtml(p.title)}</span><span class="writing-date">${p.date}</span></div>`;
+      });
+      listEl.innerHTML = html;
+    }
+  }
+
+  function openPost(id) {
+    const post = getPosts().find(p => p.id === id);
+    if (!post) return;
+    document.getElementById("post-date").textContent = post.date;
+    document.getElementById("post-title").textContent = post.title;
+    document.getElementById("post-body").innerHTML = md(post.body);
+    showPage("post");
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  // ── Auth ──
+  function doLogin() {
+    const pw = document.getElementById("login-input").value;
+    if (pw === PASS) {
+      isAdmin = true;
+      document.getElementById("login-error").style.display = "none";
+      newPost();
+      showPage("admin");
+    } else {
+      document.getElementById("login-error").style.display = "block";
+    }
+  }
+  function doLogout() { isAdmin = false; showPage("home"); }
+
+  // ── Editor ──
+  function newPost() {
+    currentEditId = null;
+    document.getElementById("editor-heading").textContent = "new post";
+    document.getElementById("editor-title").value = "";
+    document.getElementById("editor-body").value = "";
+    document.getElementById("save-btn").textContent = "publish";
+    document.getElementById("delete-btn").style.display = "none";
+    previewing = false;
+    document.getElementById("editor-body").style.display = "block";
+    document.getElementById("preview-box").style.display = "none";
+    document.getElementById("preview-btn").textContent = "preview";
+  }
+
+  function editPost(id) {
+    const post = getPosts().find(p => p.id === id);
+    if (!post) return;
+    currentEditId = id;
+    document.getElementById("editor-heading").textContent = "edit post";
+    document.getElementById("editor-title").value = post.title;
+    document.getElementById("editor-body").value = post.body;
+    document.getElementById("save-btn").textContent = "save changes";
+    document.getElementById("delete-btn").style.display = "inline-block";
+    previewing = false;
+    document.getElementById("editor-body").style.display = "block";
+    document.getElementById("preview-box").style.display = "none";
+    document.getElementById("preview-btn").textContent = "preview";
+    renderAdminList();
+  }
+
+  function savePost() {
+    const title = document.getElementById("editor-title").value.trim();
+    const body = document.getElementById("editor-body").value.trim();
+    if (!title || !body) { alert("Title and body are required."); return; }
+    const posts = getPosts();
+    const now = new Date();
+    const date = now.toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric" });
+    if (currentEditId) {
+      const idx = posts.findIndex(p => p.id === currentEditId);
+      if (idx > -1) posts[idx] = { ...posts[idx], title, body, updatedAt: date };
+    } else {
+      posts.unshift({ id: Date.now().toString(), title, body, date });
+    }
+    setPosts(posts);
+    renderAdminList();
+    newPost();
+  }
+
+  function deletePost() {
+    if (!currentEditId) return;
+    if (!confirm("Delete this post? This cannot be undone.")) return;
+    setPosts(getPosts().filter(p => p.id !== currentEditId));
+    renderAdminList();
+    newPost();
+  }
+
+  function renderAdminList() {
+    const posts = getPosts();
+    const el = document.getElementById("admin-post-list");
+    if (posts.length === 0) {
+      el.innerHTML = `<p style="color:var(--muted);font-style:italic;font-size:0.85rem;">no posts yet</p>`;
+      return;
+    }
+    el.innerHTML = posts.map(p => `
+      <div class="admin-post-item ${currentEditId === p.id ? 'active' : ''}" onclick="editPost('${p.id}')">
+        <div class="admin-post-title">${escHtml(p.title)}</div>
+        <div class="admin-post-date">${p.date}</div>
+      </div>`).join("");
+  }
+
+  function togglePreview() {
+    previewing = !previewing;
+    const body = document.getElementById("editor-body").value;
+    document.getElementById("editor-body").style.display = previewing ? "none" : "block";
+    document.getElementById("preview-box").style.display = previewing ? "block" : "none";
+    document.getElementById("preview-btn").textContent = previewing ? "edit" : "preview";
+    if (previewing) document.getElementById("preview-box").innerHTML = md(body) || `<p style="color:var(--muted);font-style:italic;">nothing to preview</p>`;
+  }
+
+  function livePreview() {
+    if (previewing) {
+      const body = document.getElementById("editor-body").value;
+      document.getElementById("preview-box").innerHTML = md(body);
+    }
+  }
+
+  // ── Init ──
+  renderWritingLists();
+</script>
 </body>
 </html>
